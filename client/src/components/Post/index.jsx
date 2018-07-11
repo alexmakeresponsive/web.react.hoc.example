@@ -5,7 +5,7 @@ import './index.styl';
 
 
 import CommentList from '../CommentList/index.jsx';
-import toggleOpen from '../../hoc/toggleOpen.jsx';
+// import toggleOpen from '../../hoc/toggleOpen.jsx';
 
 class Post extends Component {
     // let {data, className} = this.props;
@@ -43,7 +43,7 @@ class Post extends Component {
         // let {textIsVisible} = this.state;
         let {isOpen} = this.props;
 
-        // console.log(data);
+        // console.log('Post isOpen = ', isOpen);
 
         return (
             <div className={className}>
@@ -60,5 +60,5 @@ class Post extends Component {
     };
 };
 
-export default toggleOpen(Post);
+export default Post;
 

@@ -11,45 +11,65 @@ class Postlist extends Component {
         super(props);
         this.renderPosts();
         this.state = {
-            postsIsAvailable: false
+            postsIsAvailable: false,
+            openPostId: null,
         }
     };
 
     localsStore = {
-        posts: []
+        posts: [],
+    };
+
+    toggleOpen = (postId) => {
+        // console.log('Postlist toggleOpen');
+        // console.log('postID from arguments = ', postId);
+        if (postId === this.state.openPostId) {
+            this.setState({
+                openPostId: null
+            });
+        } else {
+            this.setState({
+                openPostId: postId
+            });
+        }
+
+
+        this.renderPosts();
+        // console.log('openPostId in state = ', this.state.openPostId);
     };
 
     renderPosts() {
         console.log('run renderPosts');
-        let promise = apiLocalhost.getPosts();
 
+        let promise = apiLocalhost.getPosts();
         promise
             .then((data) => {
                 let result = data.map((post) => {
+                    // console.log('openPostId in map = ', post._id);
+                    // console.log('openPostId in state = ', this.state.openPostId);
+
                     return (
-                        <Post key={post._id} className="col-sm-6" data={post} />
+                        <Post key={post._id}
+                              className="col-sm-6"
+                              data={post}
+                              isOpen={post._id === this.state.openPostId}
+                              toggleOpen={this.toggleOpen.bind(this, post._id)}
+                        />
                     );
                 });
                 return result;
             })
-            .then((data)=>{
-                if (this.localsStore.posts.length === 0) {
-                    this.localsStore.posts = data;
-                    // this.setState({
-                    //     postsIsAvailable: true
-                    // });
-                    // console.log('run force update!');
-                    // this.forceUpdate();
-                }
+            .then((data) => {
+                this.localsStore.posts = data;
             })
-            .then(()=>{
+            .then(() => {
                 this.setState({
                     postsIsAvailable: true
                 });
             });
     }
 
-    render() {
+    render = () => {
         console.log('Render!');
         return (
             <div className="row">
