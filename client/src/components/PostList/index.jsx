@@ -25,9 +25,9 @@ class Postlist extends Component {
 
         promise
             .then((data) => {
-                let result = data.map((post, index) => {
+                let result = data.map((post) => {
                     return (
-                        <Post key={post._id} className="col-sm-3  card" data={post} />
+                        <Post key={post._id} className="col-sm-6" data={post} />
                     );
                 });
                 return result;
@@ -35,15 +35,22 @@ class Postlist extends Component {
             .then((data)=>{
                 if (this.localsStore.posts.length === 0) {
                     this.localsStore.posts = data;
-                    this.state.postsIsAvailable = true;
-                    console.log('run force update!');
-                    this.forceUpdate();
+                    // this.setState({
+                    //     postsIsAvailable: true
+                    // });
+                    // console.log('run force update!');
+                    // this.forceUpdate();
                 }
+            })
+            .then(()=>{
+                this.setState({
+                    postsIsAvailable: true
+                });
             });
     }
 
     render() {
-        console.log('Render!');
+        // console.log('Render!');
         return (
             <div className="row">
                 {this.localsStore.posts}
