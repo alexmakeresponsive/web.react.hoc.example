@@ -9,7 +9,7 @@ import Post from '../Post/index.jsx';
 class Postlist extends Component {
     constructor(props) {
         super(props);
-        this.renderPosts();
+        this.getPosts();
         this.state = {
             postsIsAvailable: false,
             openPostId: null,
@@ -32,14 +32,14 @@ class Postlist extends Component {
                 openPostId: postId
             });
         }
-
-
-        this.renderPosts();
+        
+        this.getPosts();
         // console.log('openPostId in state = ', this.state.openPostId);
     };
 
-    renderPosts() {
-        console.log('run renderPosts');
+    getPosts() {
+        console.log('run getPosts');
+
 
         let promise = apiLocalhost.getPosts();
         promise

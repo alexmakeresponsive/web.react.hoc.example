@@ -5,7 +5,7 @@ import './index.styl';
 
 
 import CommentList from '../CommentList/index.jsx';
-// import toggleOpen from '../../hoc/toggleOpen.jsx';
+// import ToggleOpen from '../../hoc/ToggleOpen.jsx';
 
 class Post extends Component {
     // let {data, className} = this.props;

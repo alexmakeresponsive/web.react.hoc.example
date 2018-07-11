@@ -3,7 +3,7 @@ import './index.styl';
 
 
 import Comment from '../Comment/index.jsx';
-import toggleOpen from '../../hoc/toggleOpen.jsx';
+import ToggleOpen from '../../hoc/ToggleOpen.jsx';
 
 //now we can use CommentList as staleless component, because state placed in hoc toggleOpen
 class CommentList extends Component {
@@ -72,4 +72,4 @@ class CommentList extends Component {
     };
 };
 
-export default toggleOpen(CommentList);
+export default ToggleOpen(CommentList);

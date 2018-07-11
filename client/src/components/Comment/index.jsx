@@ -7,7 +7,7 @@ let Comment = (props) => {
     let {comment, user} = props.data;
     let {className} = props;
 
-    console.log(props);
+    // console.log(props);
 
     return (
         <div className={className}>
