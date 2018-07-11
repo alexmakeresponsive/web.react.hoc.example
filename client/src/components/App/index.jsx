@@ -11,7 +11,7 @@ let App = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12">
-                        <h2 className="titleComponent">Yakobchuk React App</h2>
+                        <h2 className="titleApp">Yakobchuk React App</h2>
                     </div>
                 </div>
                 <PostList />
