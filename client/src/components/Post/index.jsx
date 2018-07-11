@@ -5,7 +5,7 @@ import './index.styl';
 
 
 import CommentList from '../CommentList/index.jsx';
-
+import toggleOpen from '../../hoc/toggleOpen.jsx';
 
 class Post extends Component {
     // let {data, className} = this.props;
@@ -18,24 +18,15 @@ class Post extends Component {
         className: PropTypes.string
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            textIsVisible: false
-        }
-    };
 
-    toggleText = () => {
-        this.setState({
-            textIsVisible: !this.state.textIsVisible
-        });
-    };
 
     getText = () => {
         let {data} = this.props;
-        let {textIsVisible} = this.state;
+        // let {textIsVisible} = this.state;
+        let {isOpen} = this.props;
 
-        if (textIsVisible) {
+        // if (textIsVisible) {
+        if (isOpen) {
             return (
                 <div>
                     <p>{data.text}</p>
@@ -49,7 +40,8 @@ class Post extends Component {
 
     render = () => {
         let {data, className} = this.props;
-        let {textIsVisible} = this.state;
+        // let {textIsVisible} = this.state;
+        let {isOpen} = this.props;
 
         // console.log(data);
 
@@ -58,8 +50,8 @@ class Post extends Component {
                 <div className="Post card">
                     <h3 className="title">{data.title}</h3>
                     <span>{data.dateCreatedAt}</span>
-                    <button className="primary-1" onClick={this.toggleText}>
-                        {textIsVisible ? 'Close text' : 'Show text'}
+                    <button className="primary-1" onClick={this.props.toggleOpen}>
+                        {isOpen ? 'Close text' : 'Show text'}
                     </button>
                     {this.getText()}
                 </div>
@@ -68,5 +60,5 @@ class Post extends Component {
     };
 };
 
-export default Post;
+export default toggleOpen(Post);
 

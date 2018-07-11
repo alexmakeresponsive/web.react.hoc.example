@@ -50,7 +50,7 @@ class Postlist extends Component {
     }
 
     render() {
-        // console.log('Render!');
+        console.log('Render!');
         return (
             <div className="row">
                 {this.localsStore.posts}
