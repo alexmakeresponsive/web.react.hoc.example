@@ -4,6 +4,7 @@ import './index.styl';
 import apiLocalhost from '../../redux/api/localhost';
 
 import Post from '../Post/index.jsx';
+import AccordionAbility from '../../hoc/AccordionAbility.jsx';
 
 
 class Postlist extends Component {
@@ -12,71 +13,71 @@ class Postlist extends Component {
         this.getPosts();
         this.state = {
             postsIsAvailable: false,
-            openPostId: null,
         }
     };
 
     localsStore = {
         posts: [],
+        postsReact: []
     };
 
-    toggleOpen = (postId) => {
-        // console.log('Postlist toggleOpen');
-        // console.log('postID from arguments = ', postId);
-        if (postId === this.state.openPostId) {
-            this.setState({
-                openPostId: null
-            });
-        } else {
-            this.setState({
-                openPostId: postId
-            });
-        }
-        
-        this.getPosts();
-        // console.log('openPostId in state = ', this.state.openPostId);
-    };
 
-    getPosts() {
+    getPosts = () => {
         console.log('run getPosts');
-
 
         let promise = apiLocalhost.getPosts();
         promise
             .then((data) => {
-                let result = data.map((post) => {
-                    // console.log('openPostId in map = ', post._id);
-                    // console.log('openPostId in state = ', this.state.openPostId);
-
-                    return (
-                        <Post key={post._id}
-                              className="col-sm-6"
-                              data={post}
-                              isOpen={post._id === this.state.openPostId}
-                              toggleOpen={this.toggleOpen.bind(this, post._id)}
-                        />
-                    );
-                });
-                return result;
+                this.localsStore.posts = data;
             })
             .then((data) => {
-                this.localsStore.posts = data;
+                return this.mapPosts();
+            })
+            .then((data) => {
+                this.localsStore.postsReact = data;
             })
             .then(() => {
                 this.setState({
                     postsIsAvailable: true
                 });
             });
-    }
+    };
+
+    renderPosts = () => {
+        if (!this.props.openPostId) {
+            return this.localsStore.postsReact;
+        } else {
+            return this.mapPosts();
+        }
+    };
+
+    mapPosts = () => {
+        let result = this.localsStore.posts.map((post) => {
+            // console.log('openPostId in map = ', post._id);
+            // console.log('openPostId in state = ', this.state.openPostId);
+
+            // console.log(this.props);
+
+            return (
+                <Post key={post._id}
+                      className="col-sm-6"
+                      data={post}
+                      isOpen={post._id === this.props.openPostId}
+                      toggleOpen={this.props.toggleOpen.bind(this, post._id)}
+                />
+            );
+        });
+        return result;
+    };
 
     render = () => {
         console.log('Render!');
         return (
             <div className="row">
-                {this.localsStore.posts}
+                {this.renderPosts()}
             </div>
         );
     }
 }
 
-export default Postlist;
+export default AccordionAbility(Postlist);

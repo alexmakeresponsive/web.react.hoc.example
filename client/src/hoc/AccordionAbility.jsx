@@ -2,18 +2,24 @@ import React, { Component as ReactComponent} from 'react';
 
 export default (OriginalComponent) => class AccordionAbility extends ReactComponent {
     state = {
-        isOpen: false
+        openPostId: null,
     };
 
-    toggleOpen = () => {
+    toggleOpen = (postId) => {
+        // console.log('Postlist toggleOpen');
+        // console.log('postID from arguments = ', postId);
         this.setState({
-            isOpen: !this.state.isOpen
+            openPostId: (postId === this.state.openPostId) ? null : postId
         });
+
+        // this.getPosts();
+        // console.log('openPostId in state = ', this.state.openPostId);
     };
+
 
     render = () => {
         return (
-            <OriginalComponent {...this.props} isOpen={this.state.isOpen} toggleOpen={this.toggleOpen} />
+            <OriginalComponent {...this.props} openPostId={this.state.openPostId} toggleOpen={this.toggleOpen} />
         );
     }
 }
