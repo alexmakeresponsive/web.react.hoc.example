@@ -1,0 +1,16 @@
+{
+  "name": "MER2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "bn.app": "babel-node server/app.js --presets es2015",
+    "bn.test": "babel-node server/test.js --presets es2015",
+    "app.client": "node client/app.js",
+    "app.client.webpack.pdn": "NODE_ENV=production  webpack",
+    "app.client.webpack.dev": "NODE_ENV=development webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
