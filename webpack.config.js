@@ -16,7 +16,7 @@ var NODE_ENV     = process.env.NODE_ENV;
 
 //Actions
 //1
-// plugins.push();
+plugins.push(new webpack.HotModuleReplacementPlugin());
 //2
 switch(NODE_ENV) {
     case 'development':
@@ -41,13 +41,14 @@ if (NODE_ENV === 'production') {
     );
 }
 //5
-if (NODE_ENV === 'development') {
-    var liveReloadString = 'webpack-dev-server/client?http://localhost:9100';
-
-    for (var prop in entryPoints) {
-        typeof entryPoints[prop] ===  "object" ? entryPoints[prop].unshift(liveReloadString) : true;
-    }
-}
+// if (NODE_ENV === 'development') {
+//     var liveReloadString = 'webpack-dev-server/client?http://localhost:9100';
+//     var liveReloadString = '';
+    //
+    // for (var prop in entryPoints) {
+    //     typeof entryPoints[prop] ===  "object" ? entryPoints[prop].unshift(liveReloadString) : true;
+    // }
+// }
 
 
 
@@ -69,7 +70,7 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['latest', 'react'],
+                            presets: ['latest', 'react', 'react-hmre'],
                             plugins: ["babel-plugin-transform-class-properties"]
                         }
                     }
@@ -118,5 +119,6 @@ module.exports = {
         contentBase: __dirname + '/client/',
         publicPath: '/',
         watchContentBase: true,
+        hot: true
     }
 };
