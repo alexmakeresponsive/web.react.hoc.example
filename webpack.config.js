@@ -28,7 +28,7 @@ switch(NODE_ENV) {
 }
 //3
 entryPoints = {
-    './bundles/index.bundle.min.js':            ['./index.jsx']
+    './bundles/index.bundle.min.js':            ['./src/components/App/index.jsx']
 };
 //4
 if (NODE_ENV === 'production') {
