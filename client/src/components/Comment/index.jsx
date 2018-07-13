@@ -11,6 +11,7 @@ let Comment = (props) => {
 
     return (
         <div className={className}>
+            {console.log('render Comment')}
             <div className="imgWr">
                 <img className="img" src="/assets/img/placeholder.png" alt="userProfilePhoto"/>
             </div>

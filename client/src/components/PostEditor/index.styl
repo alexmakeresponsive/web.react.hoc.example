@@ -1,0 +1,24 @@
+form[name=formPostEditor]
+  .inputWr
+    position: relative
+    padding-bottom: 45px
+
+  #textFormPostEditor
+    min-height: 100px
+  #titleFormPostEditor
+    height: 38px
+
+  .validationMessage
+    position: absolute
+    left:   10px
+    bottom: 20px
+    opacity: 0
+    transition opacity 1s
+
+  .validationMessage.success
+    color: #26a69a
+    opacity 1
+
+  .validationMessage.error
+    color: #e53935
+    opacity 1

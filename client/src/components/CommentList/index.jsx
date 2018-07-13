@@ -58,6 +58,8 @@ class CommentList extends Component {
         let {isOpen} = this.props;
         // console.log('commentIsVisible = ', commentIsVisible );
 
+        console.log('render CommentList');
+
         return (
             <div className="">
                 <button className="primary-2" onClick={this.props.toggleOpen}>

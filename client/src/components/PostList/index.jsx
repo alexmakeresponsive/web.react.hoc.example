@@ -71,7 +71,7 @@ class Postlist extends Component {
     };
 
     render = () => {
-        console.log('Render!');
+        console.log('render PostList');
         return (
             <div className="row">
                 {this.renderPosts()}
