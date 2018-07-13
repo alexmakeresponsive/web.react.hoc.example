@@ -22,3 +22,17 @@ form[name=formPostEditor]
   .validationMessage.error
     color: #e53935
     opacity 1
+
+  button
+    position: relative
+    z-index: 10
+
+  .active
+    pointer-events: auto
+
+  .disabled
+    pointer-events: none
+    opacity: 0.5
+  .disabled:hover
+    cursor: wait
+
