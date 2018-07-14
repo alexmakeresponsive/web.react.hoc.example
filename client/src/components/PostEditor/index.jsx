@@ -138,14 +138,14 @@ class PostEditor extends Component {
                                     {this.setValidationMessage(stateText.status, textName)}
                                 </span>
                             </div>
-                            <div>
-
+                            <div className="buttonWr">
+                                {/*11 <br/>*/}
+                                <button type="submit"
+                                        className={"primary-2 " +
+                                        this.addActiveClassName(stateSubmit.status)}>
+                                    Submit
+                                </button>
                             </div>
-                            <button type="submit"
-                                    className={"primary-2 " +
-                                    this.addActiveClassName(stateSubmit.status)}>
-                                Submit
-                            </button>
                         </fieldset>
                     </form>
 
