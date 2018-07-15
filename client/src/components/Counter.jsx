@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import incrementAction from '../redux/actionCreators/increment';
 
 class Counter extends Component {
     static propTypes = {
-        counter: PropTypes.number
+        counter: PropTypes.number,
+        incrementAction: PropTypes.func.isRequired
     };
 
     Increment = () => {
         console.log('+1');
-        this.props.dispatch({
-            type:'INCREMENT'
-        })
+        let {incrementAction} = this.props;
+        incrementAction();
     };
 
     render = () => {
@@ -36,8 +37,8 @@ let mapStateToProps = (state) => {
     }
 };
 
-const decorator = connect(mapStateToProps);
+let mapStateToDispatch = { incrementAction };
 
 
-export default decorator(Counter);
+export default connect(mapStateToProps, mapStateToDispatch)(Counter);
 
