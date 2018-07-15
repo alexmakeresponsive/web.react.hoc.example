@@ -23,7 +23,7 @@ class Postlist extends Component {
 
 
     getPosts = () => {
-        console.log('run getPosts');
+        // console.log('run getPosts');
 
         let promise = apiLocalhost.getPosts();
         promise
@@ -71,7 +71,7 @@ class Postlist extends Component {
     };
 
     render = () => {
-        console.log('render PostList');
+        // console.log('render PostList');
         return (
             <div className="row">
                 {this.renderPosts()}
