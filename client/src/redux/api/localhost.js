@@ -1,26 +1,15 @@
-import axios from 'axios';
+// import axios from 'axios';
+// import Config from '../../../../etc/config.json';
+// let prefix = Config.config.app.prefix;
 
-import Config from '../../../../etc/config.json';
-
-// console.log('Config = ', Config.config.app.prefix );
-
-let prefix = Config.config.app.prefix;
-
-
-// let store = {
-//     posts: []
-// };
-
-
-
+import posts from '../../data/posts.json';
+/*
 export default {
     getPosts() {
         let PromiseAxios =  axios.get(`${prefix}/posts`);
 
         return PromiseAxios
             .then(({ data }) => {
-                // this.store.posts = data;
-                // console.log('this store = ', this.store);
                 return data;
             })
             .catch(err => {
@@ -35,9 +24,7 @@ export default {
     deletePost(noteId) {
         return axios.delete(`${prefix}/posts/${noteId}`);
     },
-
-    // store: {
-    //     posts: [1,2]
-    // }
 }
+*/
 
+export default posts;

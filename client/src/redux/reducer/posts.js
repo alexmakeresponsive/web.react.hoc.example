@@ -1,27 +1,15 @@
-import apiLocalhost from '../../redux/api/localhost';
+import postsDefault from '../../redux/api/localhost';
+import constsPosts from '../../redux/consts/posts';
 
-export default (stateOriginal, action) => {
-    let getPosts = () => {
-        let state       = [];
-        const { type }  = action;
-        let promise     = apiLocalhost.getPosts();
+let {deletePost} = constsPosts;
 
-        promise
-            .then((data) => {
-                state = data;
+export default (postsState = postsDefault, action) => {
+    const { type, payload }  = action;
+    // console.log(postsState);
 
-                switch (type) {
-                    case 'DELETE_POST': return state;
-                }
+    switch (type) {
+        case deletePost: return postsState.filter( (post) => post.id !== payload.id  );
+    }
 
-                // console.log('posts reducer, action = ', action);
-                console.log('posts reducer, state = ',  state);
-                
-                return state;
-            });
-
-        return state;
-    };
-
-    return getPosts();
+    return postsState;
 }
