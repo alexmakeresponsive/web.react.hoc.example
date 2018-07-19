@@ -9,7 +9,6 @@ import PostEditor from '../PostEditor/index.jsx';
 import PostList from '../PostList/index.jsx';
 
 
-
 import Counter from '../Counter.jsx';
 
 

@@ -38,6 +38,11 @@ class Post extends Component {
         return null;
     };
 
+
+    deleteItem = () => {
+        console.log('delete post');
+    };
+
     render = () => {
         let {data, className} = this.props;
         // let {textIsVisible} = this.state;
@@ -55,6 +60,9 @@ class Post extends Component {
                         {isOpen ? 'Close text' : 'Show text'}
                     </button>
                     {this.getText()}
+                    <button className="secondary-1" onClick={this.deleteItem}>
+                        Delete post
+                    </button>
                 </div>
             </div>
         );
