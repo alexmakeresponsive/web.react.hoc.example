@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import './index.styl';
 
-import apiLocalhost from '../../redux/api/localhost';
-
 import Post from '../Post/index.jsx';
 import AccordionAbility from '../../hoc/AccordionAbility.jsx';
 
-import apiPosts from '../../redux/api/localhost.js';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
 
 
 class Postlist extends Component {
+    static propTypes = {
+
+    };
+
     constructor(props) {
         super(props);
     };
 
     renderPosts = () => {
-        let result = apiPosts.map((post) => {
+        let result = this.props.postsProp.map((post) => {
             // console.log('openPostId in map = ', post._id);
             // console.log('openPostId in state = ', this.state.openPostId);
 
             // console.log(this.props);
 
             return (
-                <Post key={post._id}
+                <Post {...this.props}
+                      key={post._id}
                       className="col-sm-6"
                       data={post}
                       isOpen={post._id === this.props.openPostId}
@@ -43,4 +48,13 @@ class Postlist extends Component {
     }
 }
 
-export default AccordionAbility(Postlist);
+
+// const connectDecorator = connect( mapStateToProps );
+
+function mapStateToProps(stateStore) {
+    return {
+        postsProp: stateStore.posts1
+    }
+}
+
+export default connect(mapStateToProps)(AccordionAbility(Postlist));
