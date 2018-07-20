@@ -47,7 +47,7 @@ class Post extends Component {
 
         return (
             <div className={className}>
-                {console.log('render Post')}
+                {/*{console.log('render Post')}*/}
                 <div className="Post card">
                     <h3 className="title">{data.title}</h3>
                     <span>{data.dateCreatedAt}</span>

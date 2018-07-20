@@ -1,6 +1,6 @@
 var elements = document.querySelectorAll('.disabled');
 
-console.log(elements);
+// console.log(elements);
 
 elements.forEach(function (element) {
     element.addEventListener(

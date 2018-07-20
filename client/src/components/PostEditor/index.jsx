@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import './index.styl';
-
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {actionIncrementCreator} from '../../redux/action/creators/index';
 
 class PostEditor extends Component {
+    static propsType = {
+        counter: PropTypes.number
+    };
+
     state = {
         titleFormPostEditor: {
             value: '',
@@ -93,6 +99,11 @@ class PostEditor extends Component {
         }
     };
 
+    incrementMethod = () => {
+        // console.info('click to INCREMENT button!');
+        this.props.dispatch(actionIncrementCreator());
+    };
+
     render = () => {
         let stateTitle = this.state.titleFormPostEditor;
         let stateText  = this.state.textFormPostEditor;
@@ -106,7 +117,7 @@ class PostEditor extends Component {
 
         return (
             <div className="PostEditor">
-                <h1 className="titleComponent">Posteditor</h1>
+                <h1 className="titleComponent">{this.props.counterProp} = Posteditor = {this.props.counterProp}</h1>
                 <div>
                     <form name="formPostEditor">
                         <fieldset>
@@ -145,6 +156,11 @@ class PostEditor extends Component {
                                         this.addActiveClassName(stateSubmit.status)}>
                                     Submit
                                 </button>
+                                <button type="button"
+                                        className={"primary-2 "}
+                                        onClick={this.incrementMethod}>
+                                    INCREMENT
+                                </button>
                             </div>
                         </fieldset>
                     </form>
@@ -155,4 +171,13 @@ class PostEditor extends Component {
     };
 };
 
-export default PostEditor;
+
+const connectDecorator = connect( mapStateToProps );
+
+function mapStateToProps(stateStore) {
+    return {
+        counterProp: stateStore.counter
+    }
+}
+
+export default connectDecorator(PostEditor);
